@@ -14,7 +14,7 @@ app.use(express.json({ limit: '50mb' }));
 
 app.get('/', (req, res) => {
   res.status(200).json({
-    message: 'Welcome to Yariga!',
+    message: 'Welcome to DashHub!',
   });
 });
 
