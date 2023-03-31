@@ -71,6 +71,9 @@ const AllProperties = () => {
                     },
                   ]);
                 }}
+                sx={{
+                  mt: '16px'
+                }}
               />
               <Select
                 variant="outlined"
@@ -90,6 +93,13 @@ const AllProperties = () => {
                   ],
                   'replace',
                 )}
+                sx={{
+                  mt: '18px',
+                  px: '10px',
+                  height: '50px',
+                  cursor: 'pointer'
+                  
+                }}
               >
                 <MenuItem value="">All</MenuItem>
                 {['Apartment', 'Villa', 'Farmhouse', 'Condos', 'Townhouse', 'Duplex', 'Studio', 'Chalet'].map((type) => (
@@ -100,16 +110,7 @@ const AllProperties = () => {
             </Box>
             </Stack>
             </Box>
-            <Stack direction="row" justifyContent="space-between" alignItems="center" gap={2}>
-          
-          <CustomButton 
-          title ="Create Property"
-          handleClick={()=>navigate("/properties/create")}
-          backgroundColor="#475be8"
-          color="#fcfcfc"
-          icon={<Add />}
-          />
-     </Stack>
+           
      <Box mt="30px" sx={{display:"flex",flexWrap:"wrap", gap:3}}>
          {allProperties.map((property)=>(
               <PropertyCard 

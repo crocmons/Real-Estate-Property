@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 import { Button } from '@pankod/refine-mui';
 
 import { CustomButtonProps } from 'interfaces/common';
@@ -31,17 +34,23 @@ const CustomButton = ({ type, title, backgroundColor, color, fullWidth, icon, ha
     );
   }
 
+  
+
   return (
     <Button
       disabled={disabled}
       sx={{
         flex: fullWidth ? 1 : 'unset',
-        padding: '10px 15px',
+        marginTop: '23px',
+        marginLeft: '12px',
+        marginRight: '5px',
+        marginBottom: '12px',
+        padding: '10px 10px',
         width: fullWidth ? '100%' : 'fit-content',
         minWidth: 130,
         backgroundColor,
         color,
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 600,
         gap: '10px',
         textTransform: 'capitalize',

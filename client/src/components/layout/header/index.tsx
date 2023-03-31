@@ -1,22 +1,36 @@
+/* eslint-disable */
 import React, { useContext } from 'react';
 import { useGetIdentity } from '@pankod/refine-core';
 import {
   AppBar,
-  // IconButton,
+  IconButton,
   Avatar,
   Stack,
   Toolbar,
   Typography,
 } from '@pankod/refine-mui';
-// import { DarkModeOutlined, LightModeOutlined } from '@mui/icons-material';
-
-// import { ColorModeContext } from 'contexts';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import { ColorModeContext } from 'contexts';
+import ManageSearchIcon from '@mui/icons-material/Search';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import Badge from '@mui/material/Badge';
 
 export const Header: React.FC = () => {
-  // const { mode, setMode } = useContext(ColorModeContext);
 
   const { data: user } = useGetIdentity();
   const showUserInfo = user && (user.name || user.avatar);
+
+  
+  function notificationsLabel(count: number) {
+    if (count === 0) {
+      return 'no notifications';
+    }
+    if (count > 5) {
+      return 'more than 5 notifications';
+    }
+    return `${count} notifications`;
+  }
+  
 
   return (
     // CHANGE: header color & elevation
@@ -28,13 +42,37 @@ export const Header: React.FC = () => {
           justifyContent="flex-end"
           alignItems="center"
         >
-          {/* <IconButton
-            onClick={() => {
-              setMode();
+          <IconButton
+            // onClick={() => {
+            //   setMode();
+            // }}
+            sx={{
+              p: '5px',
+              m: '5px',
+            }}
+            aria-label={notificationsLabel(100)}
+          >
+              <Badge badgeContent={5} color="error">
+            <NotificationsOutlinedIcon />
+              </Badge>
+          </IconButton>
+          <IconButton
+            sx={{
+              p: '5px',
+              m: '5px',
             }}
           >
-            {mode === 'dark' ? <LightModeOutlined /> : <DarkModeOutlined />}
-          </IconButton> */}
+            <ManageSearchIcon />
+          </IconButton>
+          <IconButton
+            sx={{
+              p: '5px',
+              m: '8px',
+            }}
+          >
+            <SettingsOutlinedIcon />
+          </IconButton>
+         
           {showUserInfo && (
             <Stack direction="row" gap="12px" alignItems="center" justifyContent="center">
               {user.avatar && <Avatar src={user?.avatar} alt={user?.name} />}

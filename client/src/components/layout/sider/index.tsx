@@ -23,6 +23,7 @@ import {
   ChevronRight,
   MenuRounded,
   Dashboard,
+  Add,
 } from '@mui/icons-material';
 import {
   CanAccess,
@@ -35,9 +36,10 @@ import {
   useMenu,
   useRefineContext,
 } from '@pankod/refine-core';
-import { useLocation } from '@pankod/refine-react-router-v6';
+import { useLocation, useNavigate } from '@pankod/refine-react-router-v6';
 
 import { Title as DefaultTitle } from '../title';
+import CustomButton from 'components/common/CustomButton';
 
 export const Sider: typeof DefaultSider = ({ render }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -56,7 +58,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
   const { Link } = useRouterContext();
   const { hasDashboard } = useRefineContext();
   const translate = useTranslate();
-
+  const navigate = useNavigate();
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
   const isExistAuthentication = useIsExistAuthentication();
   const { mutate: mutateLogout } = useLogout();
@@ -222,12 +224,24 @@ export const Sider: typeof DefaultSider = ({ render }) => {
 
   const dashboard = hasDashboard ? (
     <CanAccess resource="dashboard" action="list">
+    
+          <ListItemIcon>
+
+            <CustomButton 
+              title ="Create Property"
+              handleClick={()=>navigate("/properties/create")}
+              backgroundColor="#475be8"
+              color="#fcfcfc"
+              icon={<Add />}
+          />
+          </ListItemIcon>
       <Tooltip
         title={translate('dashboard.title', 'Dashboard')}
         placement="right"
         disableHoverListener={!collapsed}
         arrow
       >
+        
         <ListItemButton
           component={Link}
           to="/"
@@ -236,22 +250,23 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             setOpened(false);
           }}
           sx={{
-            mt: 4,
+            mt: 8,
             pl: 2,
             // py: 1,
             '&.Mui-selected': {
               '&:hover': {
                 backgroundColor: pathname === '/' ? '#1e36e8' : 'transparent',
               },
-              backgroundColor: pathname === '/' ? '#475be8' : 'transparent',
+              backgroundColor: pathname === '/' ? '#475be4' : 'transparent',
             },
             justifyContent: 'center',
-            margin: '10px auto',
+            margin: '15px auto',
             borderRadius: '12px',
-            minHeight: '56px',
+            minHeight: '50px',
             width: '90%',
           }}
         >
+          
           <ListItemIcon
             sx={{
               justifyContent: 'center',
@@ -265,7 +280,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
             primary={translate('dashboard.title', 'Dashboard')}
             primaryTypographyProps={{
               noWrap: true,
-              fontSize: '16px',
+              fontSize: '14px',
               fontWeight: pathname === '/' ? 'bold' : 'normal',
               color: pathname === '/' ? '#fff' : '#808191',
               marginLeft: '10px',

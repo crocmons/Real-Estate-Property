@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Refine, AuthProvider } from '@pankod/refine-core';
 import {
   notificationProvider,
@@ -6,23 +8,25 @@ import {
   GlobalStyles,
   ReadyPage,
   ErrorComponent,
+  Stack,
 } from '@pankod/refine-mui';
 import {
   AccountCircleOutlined,
-  // ChatBubbleOutline,
+  Add,
+  ChatBubbleOutline,
   PeopleAltOutlined,
-  // StarOutlineRounded,
+  StarOutlineRounded,
   VillaOutlined,
 } from '@mui/icons-material';
 import dataProvider from '@pankod/refine-simple-rest';
 import routerProvider from '@pankod/refine-react-router-v6';
 import axios, { AxiosRequestConfig } from 'axios';
-
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import { Title, Sider, Layout, Header } from 'components/layout';
 import { ColorModeContextProvider } from 'contexts';
 import { CredentialResponse } from 'interfaces/google';
 import { parseJwt } from 'utils/parse-jwt';
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import {
   Home,
   Agents,
@@ -34,6 +38,9 @@ import {
   AgentProfile,
   EditProperty,
 } from 'pages';
+import { CustomButton } from 'components';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -65,7 +72,7 @@ const App = () => {
             avatar: profileObj.picture,
           }),
         });
-
+         
         const data = await response.json();
         if (response.status === 200) {
           localStorage.setItem(
@@ -115,12 +122,17 @@ const App = () => {
       }
     },
   };
-
+ 
   return (
     <ColorModeContextProvider>
       <CssBaseline />
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
+      <Stack direction="row" justifyContent="space-between" alignItems="center" gap={2}>
+          
+         
+     </Stack>
       <RefineSnackbarProvider>
+      
         <Refine
           dataProvider={dataProvider('https://real-estate-dashboard-pannel.onrender.com/api/v1')}
           notificationProvider={notificationProvider}
@@ -129,33 +141,42 @@ const App = () => {
           resources={[
             {
               name: 'properties', // LINK
+              options: { label: 'Search Property' },
               list: AllProperties,
               show: PropertyDetails,
               create: CreateProperty,
               edit: EditProperty,
-              icon: <VillaOutlined />,
+              icon: <ManageSearchIcon />,
             },
             {
               name: 'agents', // LINK
+              options: { label: 'My Clients' },
               list: Agents,
               show: AgentProfile,
               icon: <PeopleAltOutlined />,
             },
-            // {
-            //   name: 'review', // LINK
-            //   list: Home,
-            //   icon: <StarOutlineRounded />,
-            // },
-            // {
-            //   name: 'message', // LINK
-            //   list: Home,
-            //   icon: <ChatBubbleOutline />,
-            // },
             {
               name: 'my-profile', // LINK
               options: { label: 'My Profile' },
               list: MyProfile,
               icon: <AccountCircleOutlined />,
+            },
+            {
+              name: 'calendar', // LINK
+              options: { label: 'Calendar' },
+              list: Home,
+              icon: <CalendarMonthIcon />,
+            },
+            {
+              name: 'mls-lists', // LINK
+              options: { label: 'MLS Lists' },
+              list: Home,
+              icon: <ShoppingCartOutlinedIcon />,
+            },
+            {
+              name: 'notification', // LINK
+              list: Home,
+              icon: <NotificationsOutlinedIcon />,
             },
           ]}
           Title={Title}

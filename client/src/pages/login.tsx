@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { useLogin } from '@pankod/refine-core';
 import { Container, Box } from '@pankod/refine-mui';
-
+import Logo1 from '../assets/Group1.png';
 import { CredentialResponse } from 'interfaces/google';
 // import { parseJwt } from 'utils/parse-jwt';
 // import { yariga } from '../assets';
@@ -80,7 +80,7 @@ export const Login: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          <img src="https://w7.pngwing.com/pngs/927/735/png-transparent-logo-graphic-design-dashboard-vertical-miscellaneous-text-orange.png" alt="Yariga Logo" width={ 140 }/>
+          <img src={Logo1} alt="Yariga Logo" width={ 140 }/>
           <Box mt={4}>
             <GoogleButton />
           </Box>

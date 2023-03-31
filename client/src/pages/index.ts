@@ -1,13 +1,14 @@
+/* eslint-disable */
 import AgentProfile from './agent-profile';
 import Agents from './agent';
 import AllProperties from './all-properties';
 import CreateProperty from './create-property';
 import Home from './home';
-import { Login } from './login';
+import {  Login  } from './login';
 import MyProfile from './my-profile';
 import PropertyDetails from './property-details';
 import EditProperty from './edit-property';
-
+import Charts from './charts';
 export {
   AgentProfile,
   Agents,
@@ -15,6 +16,7 @@ export {
   CreateProperty,
   Home,
   Login,
+  Charts,
   MyProfile,
   PropertyDetails,
   EditProperty,
