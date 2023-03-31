@@ -21,36 +21,18 @@ const PropertyCard = ({ id, photo }: PropertyCardProps) => (
   >
     <CardMedia
       component="img"
-      width={260}
-      height={260}
+      width={242}
+      height={242}
       image={photo}
       alt="card_img"
       sx={{ borderRadius: '8px', left: '1418px',
-      top: '104px', width:{xs:'220',sm:'260'},
-      height:{xs:'220',sm:'260'}
+      top: '100px', width:{xs:'210',sm:'242'},
+      height:{xs:'210',sm:'242'}
+
 
        }}
     />
-    {/* <CardContent sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: '10px', paddingX: '5px' }}>
-      <Stack direction="column" gap={1}>
-        <Typography fontSize={16} fontWeight={500} color="#11142D">{title}</Typography>
-        <Typography fontSize={12}>
-          {description}
-        </Typography>
-        <Stack direction="row" gap={0.5} alignItems="flex-start">
-          <Place sx={{
-            fontSize: 18,
-            color: '#11142D',
-            marginTop: 0.5,
-          }}
-          />
-          <Typography fontSize={14} color="#808191">{location}</Typography>
-        </Stack>
-      </Stack>
-      <Box px={1.5} py={0.5} borderRadius={1} bgcolor="#DADEFA" height="fit-content">
-        <Typography fontSize={12} fontWeight={600} color="#475BE8">${price}</Typography>
-      </Box>
-    </CardContent> */}
+    
   </Card>
 );
 
